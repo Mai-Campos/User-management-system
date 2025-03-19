@@ -10,20 +10,20 @@ import lombok.ToString;
 @Table(name = "usuarios")
 @ToString
 @EqualsAndHashCode
-public class Usuario {
+public class User {
 
     @Id
     @Getter @Setter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Getter @Setter
-    private String nombre;
+    private String name;
     @Getter @Setter
-    private String apellido;
+    private String lastName;
     @Getter @Setter
     private String email;
     @Getter @Setter
-    private String telefono;
+    private String celphone;
     @Getter @Setter
     private String password;
 

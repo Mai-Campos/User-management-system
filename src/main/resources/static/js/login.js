@@ -3,11 +3,11 @@ $(document).ready(function() {
 //On ready
 });
 
- async function iniciarSesion(){
+ async function login(){
 
-      let datos = {};
-      datos.email = document.querySelector("#email").value;
-      datos.password = document.querySelector("#password").value;
+      let data = {};
+      data.email = document.querySelector("#email").value;
+      data.password = document.querySelector("#password").value;
 
       const request = await fetch('api/login', {
         method: 'POST',
@@ -16,18 +16,18 @@ $(document).ready(function() {
           'Content-Type': 'application/json'
         },
 
-         body: JSON.stringify(datos)
+         body: JSON.stringify(data)
 
       });
 
-      const respuesta = await request.text();
+      const response = await request.text();
 
-      if(respuesta != "Fail"){
-        localStorage.token = respuesta;
-        localStorage.email = datos.email;
-        window.location.href = "usuarios.html"
+      if(response != "Fail"){
+        localStorage.token = response;
+        localStorage.email = data.email;
+        window.location.href = "users.html"
       }else{
-        swal("Credenciales incorrectas.", "Por favor intente nuevamente");
+        swal("Incorrect credentials.", "Please Try Again");
       }
 
 }
