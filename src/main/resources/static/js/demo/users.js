@@ -11,6 +11,7 @@ document.getElementById('UserEmailTxt').outerHTML = localStorage.email;
 
  async function loadUsers(){
 
+
       const request = await fetch('api/users', {
         method: 'GET',
         headers: {
@@ -31,6 +32,8 @@ document.getElementById('UserEmailTxt').outerHTML = localStorage.email;
             HtmlList+=HtmlUser;
         }
 
+
+
       document.querySelector('#users, tbody').innerHTML = HtmlList;
 }
 
@@ -50,3 +53,5 @@ document.getElementById('UserEmailTxt').outerHTML = localStorage.email;
 
           location.reload();
       }
+
+

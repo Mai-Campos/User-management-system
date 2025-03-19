@@ -42,8 +42,9 @@ public class UserController {
          userService.createUser(user);
     }
 
-    @RequestMapping(value = "usuario234")
-    public void edit(){
+    @RequestMapping(value = "api/users", method = RequestMethod.PUT)
+    public void edit( @RequestBody User user){
+        userService.editUser(user);
     }
 
     @RequestMapping(value = "api/users/{id}", method = RequestMethod.DELETE)
@@ -56,14 +57,4 @@ public class UserController {
     }
     
 
-    @RequestMapping(value = "usuario433")
-    public User find(){
-        User user = new User();
-        user.setName("Lucas");
-        user.setLastName("Moi");
-        user.setEmail("lucasmoy@hotmail.com");
-        user.setCelphone("23424232423");
-
-        return user;
-    }
 }

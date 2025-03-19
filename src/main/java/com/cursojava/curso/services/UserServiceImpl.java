@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
     private JWTUtil jwtUtil;
 
     @Autowired
-   private UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Override
     public List<User> getUsers() {
@@ -30,38 +30,50 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void createUser(User user) {
-       userRepository.save(user);
+        userRepository.save(user);
 
     }
 
     @Override
     public User verifyCredentials(User user) {
 
-       User userEncontrado = userRepository.findByEmail(user.getEmail());
+        User userFinded = userRepository.findByEmail(user.getEmail());
 
-       if (userEncontrado != null){
+        if (userFinded != null) {
 
-           String passwordHashed = userEncontrado.getPassword();
-           Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
-           if(argon2.verify(passwordHashed, user.getPassword())){
-               return userEncontrado;
+            String passwordHashed = userFinded.getPassword();
 
-           }
+            Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+            if (argon2.verify(passwordHashed, user.getPassword())) {
+                return userFinded;
 
-           return null;
+            }
 
-       }
+            return null;
+
+        }
 
         return null;
     }
 
     @Override
     public boolean validateToken(String token) {
-        String usuarioId =  jwtUtil.getKey(token);
-        if(usuarioId == null){
+        String userId = jwtUtil.getKey(token);
+        if (userId == null) {
             return false;
         }
 
         return true;
     }
+
+    @Override
+    public void editUser(User user) {
+        User userFinded = userRepository.findByEmail(user.getEmail());
+        userFinded.setName(user.getName());
+        userFinded.setLastName(user.getLastName());
+        userFinded.setCelphone(user.getCelphone());
+        userFinded.setPassword(user.getPassword());
+        userRepository.save(userFinded);
+    }
 }
+

@@ -9,4 +9,5 @@ public interface UserService {
     void createUser(User user);
     User verifyCredentials(User user);
     boolean validateToken(String token);
+    void editUser( User user);
 }

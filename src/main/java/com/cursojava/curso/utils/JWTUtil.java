@@ -89,8 +89,7 @@ public class JWTUtil {
      * @return
      */
     public String getKey(String jwt) {
-        // This line will throw an exception if it is not a signed JWS (as
-        // expected)
+
         Claims claims = Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(key)).
         build().parseSignedClaims(jwt).getBody();
 

@@ -9,6 +9,7 @@ $(document).ready(function() {
       data.email = document.querySelector("#email").value;
       data.password = document.querySelector("#password").value;
 
+
       const request = await fetch('api/login', {
         method: 'POST',
         headers: {
@@ -25,6 +26,7 @@ $(document).ready(function() {
       if(response != "Fail"){
         localStorage.token = response;
         localStorage.email = data.email;
+
         window.location.href = "users.html"
       }else{
         swal("Incorrect credentials.", "Please Try Again");
